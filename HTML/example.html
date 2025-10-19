@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Simple HTML Page</title>
+    <style>
+        :root{--bg:#fff;--text:#111;--muted:#555;--accent:#0066cc}
+        [data-theme="dark"]{--bg:#0f1720;--text:#e6eef8;--muted:#9fb3d3;--accent:#58a6ff}
+        html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:var(--text);background:var(--bg)}
+        .wrap{max-width:900px;margin:3rem auto;padding:1rem}
+        header{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+        nav a{color:var(--muted);text-decoration:none;margin-right:0.75rem}
+        h1{margin:.25rem 0}
+        .hero{background:linear-gradient(180deg,rgba(0,0,0,0.03),transparent);padding:1rem;border-radius:8px}
+        .controls{display:flex;gap:.5rem;align-items:center}
+        button{background:var(--accent);color:#fff;border:0;padding:.5rem .75rem;border-radius:6px;cursor:pointer}
+        footer{margin-top:2rem;color:var(--muted);font-size:.9rem;text-align:center}
+        @media (max-width:520px){header{flex-direction:column;align-items:flex-start}}
+    </style>
+</head>
+<body>
+    <div class="wrap" id="app">
+        <header>
+            <div>
+                <nav>
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                </nav>
+                <h1>Simple HTML Page</h1>
+            </div>
+            <div class="controls">
+                <button id="themeToggle" aria-pressed="false">Toggle theme</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero" aria-labelledby="intro">
+                <h2 id="intro">Welcome</h2>
+                <p>This is a minimal, responsive HTML template with a light/dark toggle. Use it as a starting point.</p>
+            </section>
+
+            <section style="margin-top:1rem">
+                <h3>Example content</h3>
+                <p style="color:var(--muted)">Add your content here. The page updates the current year in the footer automatically.</p>
+            </section>
+        </main>
+
+        <footer>
+            <small>&copy; <span id="year"></span> Simple HTML Page</small>
+        </footer>
+    </div>
+
+    <script>
+        // Toggle light/dark theme
+        const btn = document.getElementById('themeToggle');
+        btn.addEventListener('click', () => {
+            const root = document.documentElement;
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            root.setAttribute('data-theme', isDark ? '' : 'dark');
+            btn.setAttribute('aria-pressed', !isDark);
+        });
+
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html></div>
