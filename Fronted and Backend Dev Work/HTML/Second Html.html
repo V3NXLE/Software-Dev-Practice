@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--This is practice for different meta tags-->
+<html>
+    <head>
+        <meta charset="utf-8"/> <!--Good for text encoding-->
+        <meta name="viewport" content="width=device-width, initial-scale=1"/> <!--Makes page responsive for diff devices-->
+        <meta name="description" content="Html meta test"/> <!-- For seo optimization-->
+        <meta name="robots" content="index, follow"/> <!--Whether search engines should index this page-->
+        <meta property="og:url" content="https://google.com"/> <!--Open graph tags for social sharing-->
+        <meta name="author" content="Archetroniks"/> <!--Good for identification-->
+        
+        <!--Internal styling-->
+        <style>
+            /*Implementing the site to be dark by default to see if this works*/
+            :root{--bg: #000000; --text: #ffffff; --muted: #555; --accent: #0066cc;} /* Global Styling that can be reused*/
+            [data-theme="light"]{ --bg: #ffffff; --text: #3c3f42; --muted: #344e78; --accent: #58a6ff;}
+            html,body { /* Basic Styling*/
+                height: 100%;
+                margin: 0;
+                font-family:system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+                color: var(--text);
+                background: var(--bg);
+            }
+            .warp { /* Container and Header */
+                max-width: 900px;
+                margin: 3rem auto;
+                padding: 1rem;
+            }
+            header{ /* Using flexbox to layout items horizontally w space between */
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+            nav a {  
+                color: var(--muted); /*Using the global colors here!!! muting nav links*/
+                text-decoration: none;
+                margin-right: 0.75rem;
+            }
+            h1 {
+                margin: 0.25rem 0;
+            }
+            .hero{
+                background: linear-gradient(180deg, rgba(0,0,0,0.03), transparent);
+                padding: 1rem;
+                border-radius: 8px;
+            }
+            button {
+                background: var(--accent);
+                color: #fff; 
+                border: 0;
+                padding: 0.5rem 0.75rem;
+                border-radius:  6px;
+                cursor: pointer;
+            }
+            footer {
+                margin-top: 2rem;
+                color: var(--muted);
+                font-size: 0.9rem;
+                text-align: center;
+            }
+            @media (max-width:520px) { /*For screens smaller than 520px*/
+                header{
+                    flex-direction:column;
+                    align-items:flex-start;
+                }
+            }
+
+
+        </style>
+
+
+    </head> 
+    <body>
+        <div class = "wrap" id = "app">
+            <header>
+                <div>
+                    <nav>
+                        <a href="#">Home</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                    </nav>
+                    <h1>Simple HTML Page</h1>
+                </div>
+                <div class = "controls">
+                    <button id="themeToggle" aria-pressed="false">Toggle theme</button>
+                </div>
+            </header>
+            <main>
+                <section class = "hero" aria-labelledby="intro"> 
+                    <h2 id="intro">Welcome</h2>
+                    <p> Second HTML test</p>
+                </section>
+                <section style="margin-top: 1rem;">
+                    <h3>This is mirriong the example html that is ai generated</h3>
+                    <p> This came back pretty quickly I mostly wrote all this myself with some reference</p>
+                    <p> Small amount of JS for toggling button and year num below </p>
+                </section>
+            </main>
+            <footer>
+                <small>&copy; <span id="year"></span> Simple HTML Page</small>
+            </footer>
+        </div>
+        <!--Small amount of JS for button toggle-->
+        <script>
+            const btn = document.getElementById("themeToggle");
+            btn.addEventListener("click", ()=> {
+                const root = document.documentElement;
+                const isDark = root.getAttribute("data-theme")==="dark";
+                root.setAttribute("data-theme", isDark?"light": "dark")
+                btn.setAttribute("aria-pressed", !isDark);
+            });
+
+            //Current year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+        </script>
+    </body>
+</html>
